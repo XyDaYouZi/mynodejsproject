@@ -24,12 +24,17 @@ module.exports = {
             }, {
                 test: /\.png$/,
                 loader: "url-loader?mimetype=image/png"
-            }, {
+            },
+            {
                 test: /\.art$/,
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'art-template-loader',
                 }
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
             }
         ]
     },

@@ -4,8 +4,8 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">欢迎来到本系统，请先登录！</p>
-    <form action="../../index2.html" method="post">
+    <p class="login-box-msg">欢 迎 来 到 本 系 统</p>
+    <form id="signin">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="用户名">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
