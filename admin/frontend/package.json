@@ -12,13 +12,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "art-template-loader": "^1.4.3",
+    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.0.2",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "sme-router": "^0.12.8",
+    "url-loader": "^4.1.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "admin-lte": "^3.0.5"
+    "admin-lte": "^3.0.5",
+    "art-template": "^4.13.2"
   }
 }

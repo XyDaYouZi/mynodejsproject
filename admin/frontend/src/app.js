@@ -1,3 +1,4 @@
-console.log(0);
-const x = 100;
-console.log(x);
+import indexTPL from './views/index.art';
+import sigininTPX from './views/signin.art';
+const html = sigininTPX();
+$('#root').html(html);

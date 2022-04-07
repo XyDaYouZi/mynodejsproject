@@ -1,22 +1,41 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
     //设置mode,production/development
     mode: 'development',
     //配置入口
     entry: {
-        app: './src/app.js'
+        'js/app': './src/app.js'
     },
     devtool: 'source-map',
     //出口文件夹,必须写物理路径
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'app.js'
+        filename: '[name]-[hash:6].js'
+    },
+    //配置加载器:模块—>规则
+    module: {
+        rules: [
+            {
+                test: /\.jpg$/,
+                loader: "file-loader"
+            }, {
+                test: /\.png$/,
+                loader: "url-loader?mimetype=image/png"
+            }, {
+                test: /\.art$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'art-template-loader',
+                }
+            }
+        ]
     },
     //配置插件 
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, './public/index.html'),
             filename: 'index.html',
@@ -33,12 +52,12 @@ module.exports = {
                     toType: 'dir'
                 },
                 {
-                    from: 'public/css/*.css',
-                    to: path.join(__dirname, './dist/'),
-                    transformPath(targetPath, absolutePate) {
-                        return targetPath.replace('public', '')
-                    },
-                    toType: 'dir'
+                    from: 'public/css/',
+                    to: path.join(__dirname, './dist/css/'),
+                    // transformPath(targetPath, absolutePate) {
+                    //     return targetPath.replace('public', '')
+                    // },
+                    // toType: 'dir'
                 },
                 {
                     from: 'public/js/*.js',
@@ -49,20 +68,20 @@ module.exports = {
                     toType: 'dir'
                 },
                 {
-                    from: 'public/fonts/*.woff2',
-                    to: path.join(__dirname, './dist/'),
-                    transformPath(targetPath, absolutePate) {
-                        return targetPath.replace('public', '')
-                    },
-                    toType: 'dir'
+                    from: 'public/fonts/',
+                    to: path.join(__dirname, './dist/fonts/'),
+                    // transformPath(targetPath, absolutePate) {
+                    //     return targetPath.replace('public', '')
+                    // },
+                    // toType: 'dir'
                 },
                 {
-                    from: 'public/img/*.jpg',
-                    to: path.join(__dirname, './dist/'),
-                    transformPath(targetPath, absolutePate) {
-                        return targetPath.replace('public', '')
-                    },
-                    toType: 'dir'
+                    from: 'public/img/',
+                    to: path.join(__dirname, './dist/img/'),
+                    // transformPath(targetPath, absolutePate) {
+                    //     return targetPath.replace('public', '')
+                    // },
+                    // toType: 'dir'
                 }
             ]
         }),

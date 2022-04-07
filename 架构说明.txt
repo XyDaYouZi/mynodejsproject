@@ -7,6 +7,7 @@ Node.js项目
 -SPA：single page application,路由：SME-Router
 -JS模块化：ES Moudle , CommonJS Module
 -UI组件库：BootStrap(AdminLTE)
+-RMVC:Art-template(view)
 #后端（Backend)
 -Node.js
 -Express
