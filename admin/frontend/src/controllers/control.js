@@ -18,6 +18,8 @@ const signin = (router) => {
 const index = (router) => {
     return (req, res, next) => {
         res.render(htmlIndex);
+        //window resize,让页面撑满整个页面
+        $(window, '.wrapper').resize();
     }
 }
 

@@ -20,10 +20,14 @@ module.exports = {
         rules: [
             {
                 test: /\.jpg$/,
-                loader: "file-loader"
+                use: {
+                    loader: "file-loader"
+                }
             }, {
                 test: /\.png$/,
-                loader: "url-loader?mimetype=image/png"
+                use: {
+                    loader: "url-loader?mimetype=image/png"
+                }
             },
             {
                 test: /\.art$/,
@@ -95,6 +99,10 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 8080
+        port: 8080,
+        // 是否热更新
+        hot: true,
+        //解决server情况dist文件夹的问题
+        writeToDisk: true,
     },
 }
