@@ -238,50 +238,9 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" id="content">
       <!-- Your Page Content Here -->
-      <div class="box">
-        <!-- /.box-header -->
-        <div class="box-header">
-          <button type="button" class="btn btn-success">添加</button>
-        </div>
-        <div class="box-body">
-          <table class="table table-bordered">
-            <tr>
-              <th style="width: 100px">序号</th>
-              <th>用户名</th>
-              <th>所属小组</th>
-              <th style="width: 100px">操作</th>
-            </tr>
-            <tr>
-              <td>1.</td>
-              <td>admin</td>
-              <td>
-                超级管理员
-              </td>
-              <td><button class="btn btn-danger">删除</button></td>
-            </tr>
-            <tr>
-              <td>2.</td>
-              <td>大柚子</td>
-              <td>
-                管理员
-              </td>
-              <td><button class="btn btn-danger">删除</button></td>
-            </tr>
-          </table>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer clearfix">
-          <ul class="pagination pagination-sm no-margin pull-right">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">&raquo;</a></li>
-          </ul>
-        </div>
-      </div>
+      
     </section>
     <!-- /.content -->
   </div>
