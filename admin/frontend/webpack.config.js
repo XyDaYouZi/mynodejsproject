@@ -102,7 +102,7 @@ module.exports = {
         port: 8080,
         // 是否热更新
         hot: true,
-        //解决server情况dist文件夹的问题
+        //解决server清空dist文件夹的问题
         writeToDisk: true,
     },
 }
