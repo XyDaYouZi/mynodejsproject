@@ -1,6 +1,11 @@
-const { Users } = require('../utils/db');
+const {
+    Users
+} = require('../utils/db');
 
-const signup = ({ username, password }) => {
+const signup = ({
+    username,
+    password
+}) => {
     const users = new Users({
         username,
         password
@@ -8,6 +13,13 @@ const signup = ({ username, password }) => {
     return users.save()
 }
 
+const findUser = (username) => {
+    return Users.findOne({
+        username
+    })
+}
+
 module.exports = {
-    signup
+    signup,
+    findUser
 }

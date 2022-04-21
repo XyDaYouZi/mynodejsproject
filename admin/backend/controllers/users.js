@@ -2,13 +2,22 @@
 const usersModel = require('../models/users');
 
 //注册用户
-const signup = async (req, res, next) => {
-    const { username, password } = req.body;
-    let result = await usersModel.signup({ username, password });
+const signup = (req, res, next) => {
+    const {
+        username,
+        password
+    } = req.body;
+    let result = usersModel.findUser(username);
     console.log(result);
-    
-    // res.render('success', {
-    //     data: JSON.stringify([{ username, password }])
+    // usersModel.signup({
+    //     username,
+    //     password
+    // }).then(data => {
+    //     res.render('success', {
+    //         data: JSON.stringify([data])
+    //     });
+    // }).catch(err => {
+    //     console.log(err);
     // });
 }
 
