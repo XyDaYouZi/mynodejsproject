@@ -10,12 +10,13 @@ const signup = async (req, res, next) => {
     let findResult = await usersModel.findUser(username);
     res.set('content-type', 'application/json;charset=utf-8');
     if (findResult) {
-        res.render("fail", { msg: "数据已存在" });
+        res.render("fail", { msg: JSON.stringify("数据已存在") });
+        //要传递的数据必须转为JSON.stringify(data)
     } else {
         //插入数据库
         usersModel.signup({ username: username, password: bcryptPassword }).then((data) => {
             res.render('success', {
-                data: [data]
+                data: JSON.stringify([data])
             });
         }).catch((err) => {
             throw err;

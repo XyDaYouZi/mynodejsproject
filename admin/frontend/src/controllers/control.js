@@ -18,13 +18,14 @@ const _signup = () => {
         url: '/api/users/signup',
         type: 'post',
         data,
-        success(res) {
-            console.log(res);
+        success: function (res) {
+            console.log("后端返回结果", res.Code);
         },
-        error(err) {
+        error: function (err) {
             console.log(err);
         }
     })
+    //调用btn_close按钮上的click事件
     $btn_close.click();
 }
 const signin = (router) => {
@@ -48,7 +49,6 @@ const index = (router) => {
         $('#content').html(usersTPL());
         //点击保存提交表单
         $('#users-save').on('click', _signup);
-
     }
 }
 

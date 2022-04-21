@@ -104,5 +104,11 @@ module.exports = {
         hot: true,
         //解决server清空dist文件夹的问题
         writeToDisk: true,
+        //反向代理配置
+        proxy: {
+            "/api": {
+                target: "http://localhost:3000",
+            }
+        }
     },
 }
