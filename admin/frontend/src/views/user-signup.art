@@ -1,6 +1,10 @@
 <div class="box">
     <!-- /.box-header -->
     <!-- button -->
+    <!-- warning -->
+    <div id="tip">
+        
+    </div>
     <div class="box-header">
         <button type="button" class="btn  btn-success btn-lg" data-toggle="modal" data-target="#myModal">添加</button>
     </div>

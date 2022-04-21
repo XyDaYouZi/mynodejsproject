@@ -1,7 +1,9 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 module.exports = {
     //设置mode,production/development
     mode: 'development',
@@ -17,8 +19,7 @@ module.exports = {
     },
     //配置加载器:模块—>规则
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.jpg$/,
                 use: {
                     loader: "file-loader"
@@ -51,8 +52,7 @@ module.exports = {
             inject: true
         }),
         new CopyPlugin({
-            patterns: [
-                {
+            patterns: [{
                     from: 'public/*.ico',
                     to: path.join(__dirname, './dist/'),
                     transformPath(targetPath, absolutePate) {
@@ -102,7 +102,13 @@ module.exports = {
         port: 8080,
         // 是否热更新
         hot: true,
-        //解决server情况dist文件夹的问题
+        //解决server清空dist文件夹的问题
         writeToDisk: true,
+        //反向代理配置
+        proxy: {
+            "/api": {
+                target: "http://localhost:3000",
+            }
+        }
     },
 }
