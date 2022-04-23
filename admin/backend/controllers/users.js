@@ -34,6 +34,17 @@ const signup = async (req, res, next) => {
     }
 }
 
+//用户列表获取
+const list = async (req, res, next) => {
+    //查询数据
+    res.set('content-type', 'application/json;charset=utf-8');
+    let userList = await usersModel.findList();
+    res.render("success", {
+        data: JSON.stringify(userList)
+    })
+}
+
 module.exports = {
-    signup
+    signup,
+    list
 }

@@ -28,16 +28,18 @@ const _signup = () => {
     //调用btn_close按钮上的click事件
     $btn_close.click();
 }
+//登录页
 const signin = (router) => {
     return (req, res, next) => {
         res.render(htmlSignin);
         $('#signin').on('submit', _handleSubmit(router));
     }
 }
-
+//注册页
 const signup = () => {
 
 }
+//index页
 const index = (router) => {
     return (req, res, next) => {
         res.render(htmlIndex);
