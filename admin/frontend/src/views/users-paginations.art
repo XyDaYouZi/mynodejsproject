@@ -1,0 +1,7 @@
+<ul class="pagination pagination-sm no-margin pull-right">
+    <li><a href="#">&laquo;</a></li>
+    {{each pageArray}}
+    <li><a href="#">{{$value}}</a></li>
+    {{/each}}
+    <li><a href="#">&raquo;</a></li>
+</ul>

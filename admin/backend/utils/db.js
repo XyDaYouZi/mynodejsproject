@@ -1,14 +1,15 @@
 // getting-started.js
 var mongoose = require('mongoose');
 
-//mongoose.connect('mongodb://admin:admin1888@localhost:27017/cat-admin?authSource=admin&retryWrites=true&w=majority');
-mongoose.connect('mongodb://localhost:27017/cat-admin');
+mongoose.connect('mongodb://admin:admin1888@localhost:27017/cat-admin?authSource=admin&retryWrites=true&w=majority');
+//mongoose.connect('mongodb://localhost:27017/cat-admin');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 var userSchema = mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    group: String
 });
 
 var Users = mongoose.model('users', userSchema);

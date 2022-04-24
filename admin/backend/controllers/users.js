@@ -7,7 +7,8 @@ const {
 const signup = async (req, res, next) => {
     const {
         username,
-        password
+        password,
+        group
     } = req.body;
     const bcryptPassword = await passwordHash(password);
     //密码加密
@@ -23,7 +24,8 @@ const signup = async (req, res, next) => {
         //插入数据库
         usersModel.signup({
             username: username,
-            password: bcryptPassword
+            password: bcryptPassword,
+            group: group
         }).then((data) => {
             res.render('success', {
                 data: JSON.stringify([data])

@@ -5,11 +5,13 @@ const {
 //后端数据交互
 const signup = ({
     username,
-    password
+    password,
+    group
 }) => {
     const users = new Users({
         username,
-        password
+        password,
+        group
     })
     return users.save();
 }
@@ -21,7 +23,7 @@ const findUser = (username) => {
 }
 
 const findList = () => {
-    return Users.find();
+    return Users.find().sort({ _id: -1 });
 }
 
 module.exports = {
