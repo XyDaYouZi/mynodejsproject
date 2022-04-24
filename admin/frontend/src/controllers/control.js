@@ -8,6 +8,8 @@ import usersPageTPL from '../views/users-paginations.art';
 const htmlSignin = sigininTPL();
 const htmlIndex = indexTPL();
 
+//--------公共参数------
+const pageSize = 10;
 
 //---------功能函数板块----------
 const _handleSubmit = (router) => {
@@ -27,11 +29,12 @@ const _signup = () => {
         success: function (res) {
             if (res.Code == 200) {
                 _list();
-                $('#warning-tip').html(successTPL({ msg: "用户注册成功！" }))
             }
         },
         error: function (err) {
-            $('#warning-tip').html(warningTPL({ msg: "用户注册失败！" }))
+            $('#warning-tip').html(warningTPL({
+                msg: "用户注册失败！"
+            }))
             console.log(err);
         }
     })
@@ -40,7 +43,6 @@ const _signup = () => {
 }
 
 const _pagination = (data) => {
-    const pageSize = 10;
     const total = data.length;
     var pageCount = Math.ceil(total / pageSize);
     console.log(pageCount);
@@ -48,11 +50,23 @@ const _pagination = (data) => {
     for (let i = 0; i < pageCount; i++) {
         pageArray[i] = i + 1;
     }
-    const htmlPage = usersPageTPL({ pageArray });
+    const htmlPage = usersPageTPL({
+        pageArray
+    });
     $('#users-page').html(htmlPage);
+
+    // 绑定事件
+    $('#users-page-list li:not(:first-child,:last-child)').on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        let pageNo = $(this).index();
+    })
+    //第一个默认active
+    if (total >= 1) {
+        $('#users-page-list li:nth-child(2)').addClass('active');
+    }
 }
 
-const _list = () => {
+const _list = (pageNo) => {
     $.ajax({
         url: '/api/users/list',
         type: 'get',
@@ -60,7 +74,9 @@ const _list = () => {
             let data = res.data;
             _pagination(data);
             if (res.Code == 200) {
-                $('#users-list').html(usersListTPL({ data }));
+                $('#users-list').html(usersListTPL({
+                    data: data.slice((pageNo - 1) * pageSize, pageNo * pageSize)
+                }));
             }
         },
         error: (err) => {
@@ -91,7 +107,7 @@ const index = (router) => {
         //填充用户列表
         $('#content').html(usersTPL());
         // 渲染list
-        _list();
+        _list(1);
         //点击保存提交表单
         $('#users-save').on('click', _signup);
     }
