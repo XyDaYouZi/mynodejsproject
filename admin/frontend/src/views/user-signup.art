@@ -58,9 +58,7 @@
         </table>
     </div>
     <!-- /.box-body -->
-    <div class="box-footer clearfix">
-        <ul class="pagination pagination-sm no-margin pull-right" id="users-page">
-            <!-- paginations -->
-        </ul>
+    <div class="box-footer clearfix" id="users-page">
+       <!-- paginations -->
     </div>
 </div>

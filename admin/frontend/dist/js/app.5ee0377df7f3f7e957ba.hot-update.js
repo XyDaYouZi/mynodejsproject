@@ -1,12 +1,39 @@
-import indexTPL from '../views/index.art';
-import sigininTPL from '../views/signin.art';
-import usersTPL from '../views/user-signup.art';
-import usersListTPL from '../views/users-list.art';
-import warningTPL from '../views/warning.art';
-import successTPL from '../views/success.art';
-import usersPageTPL from '../views/users-paginations.art';
-const htmlSignin = sigininTPL();
-const htmlIndex = indexTPL();
+webpackHotUpdate("js/app",{
+
+/***/ "./src/controllers/control.js":
+/*!************************************!*\
+  !*** ./src/controllers/control.js ***!
+  \************************************/
+/*! exports provided: signin, index */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "index", function() { return index; });
+/* harmony import */ var _views_index_art__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/index.art */ "./src/views/index.art");
+/* harmony import */ var _views_index_art__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_views_index_art__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _views_signin_art__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/signin.art */ "./src/views/signin.art");
+/* harmony import */ var _views_signin_art__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_views_signin_art__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _views_user_signup_art__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/user-signup.art */ "./src/views/user-signup.art");
+/* harmony import */ var _views_user_signup_art__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_views_user_signup_art__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _views_users_list_art__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/users-list.art */ "./src/views/users-list.art");
+/* harmony import */ var _views_users_list_art__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_views_users_list_art__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _views_warning_art__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/warning.art */ "./src/views/warning.art");
+/* harmony import */ var _views_warning_art__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_views_warning_art__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _views_success_art__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/success.art */ "./src/views/success.art");
+/* harmony import */ var _views_success_art__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_views_success_art__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _views_users_paginations_art__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../views/users-paginations.art */ "./src/views/users-paginations.art");
+/* harmony import */ var _views_users_paginations_art__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_views_users_paginations_art__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+const htmlSignin = _views_signin_art__WEBPACK_IMPORTED_MODULE_1___default()();
+const htmlIndex = _views_index_art__WEBPACK_IMPORTED_MODULE_0___default()();
 
 //--------公共参数------
 const pageSize = 10;
@@ -42,7 +69,7 @@ const _signup = () => {
             }
         },
         error: function (err) {
-            $('#warning-tip').html(warningTPL({
+            $('#warning-tip').html(_views_warning_art__WEBPACK_IMPORTED_MODULE_4___default()({
                 msg: "用户注册失败！"
             }))
             console.log(err);
@@ -59,7 +86,7 @@ const _pagination = (data) => {
     for (let i = 0; i < pageCount; i++) {
         pageArray[i] = i + 1;
     }
-    const htmlPage = usersPageTPL({
+    const htmlPage = _views_users_paginations_art__WEBPACK_IMPORTED_MODULE_6___default()({
         pageArray
     });
     $('#users-page').html(htmlPage);
@@ -78,7 +105,7 @@ const _pagination = (data) => {
 }
 
 const _list = (pageNo) => {
-    $('#users-list').html(usersListTPL({
+    $('#users-list').html(_views_users_list_art__WEBPACK_IMPORTED_MODULE_3___default()({
         data: dataList.slice((pageNo - 1) * pageSize, pageNo * pageSize)
     }));
 }
@@ -141,7 +168,7 @@ const index = (router) => {
         //window resize,让页面撑满整个页面
         $(window, '.wrapper').resize();
         //填充用户列表
-        $('#content').html(usersTPL());
+        $('#content').html(_views_user_signup_art__WEBPACK_IMPORTED_MODULE_2___default()());
         // 渲染list方式一
         /*_loadData().then((res) => {
             dataList = res;
@@ -158,7 +185,9 @@ const index = (router) => {
     }
 }
 
-export {
-    signin,
-    index
-}
+
+
+/***/ })
+
+})
+//# sourceMappingURL=app.5ee0377df7f3f7e957ba.hot-update.js.map

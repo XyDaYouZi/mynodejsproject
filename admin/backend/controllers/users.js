@@ -46,7 +46,27 @@ const list = async (req, res, next) => {
     })
 }
 
+//删除用户
+const removeUser = async (req, res, next) => {
+    let {
+        id
+    } = req.body;
+    let result = await usersModel.remove(id);
+    let data = [];
+    res.set('content-type', 'application/json;charset=utf-8');
+    if (result) {
+        res.render('success', {
+            data: JSON.stringify(data)
+        })
+    } else {
+        res.render('fail', {
+            msg: JSON.stringify("删除失败")
+        });
+    }
+}
+
 module.exports = {
     signup,
-    list
+    list,
+    removeUser
 }

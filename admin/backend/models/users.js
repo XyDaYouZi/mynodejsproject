@@ -26,8 +26,12 @@ const findList = () => {
     return Users.find().sort({ _id: -1 });
 }
 
+const remove = (_id) => {
+    return Users.findByIdAndRemove({ _id })
+}
 module.exports = {
     signup,
     findUser,
-    findList
+    findList,
+    remove
 }

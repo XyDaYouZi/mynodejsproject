@@ -13,7 +13,7 @@ false,
 /*! exports provided: signin, index */
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: Unexpected token (77:58)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|             if (res.Code == 200) {\n|                 $('#users-list').html(usersListTPL({\n>                     data:data.slice(pageNo-1*10,pageNo*10);\n|                 }));\n|             }");
+throw new Error("Module parse failed: Assigning to rvalue (87:50)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| \n| const _remove = () => {\n>     $('#users-list').on('click', '.remove-user', (this) => {\n|         console.log(this);\n|     })");
 
 /***/ }),
 
@@ -39,4 +39,4 @@ false,
 false
 
 })
-//# sourceMappingURL=app.351b1237adb962e37a83.hot-update.js.map
+//# sourceMappingURL=app.cffad3ddab3a9d151cd8.hot-update.js.map
