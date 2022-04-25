@@ -13,7 +13,7 @@ false,
 /*! exports provided: signin, index */
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: Unexpected token (77:58)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|             if (res.Code == 200) {\n|                 $('#users-list').html(usersListTPL({\n>                     data:data.slice(pageNo-1*10,pageNo*10);\n|                 }));\n|             }");
+throw new Error("Module parse failed: Cannot use keyword 'await' outside an async function (111:8)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|         $('#content').html(usersTPL());\n|         // 渲染list\n>         await _loadData();\n|         _list(1);\n|         //点击保存提交表单");
 
 /***/ }),
 
@@ -39,4 +39,4 @@ false,
 false
 
 })
-//# sourceMappingURL=app.351b1237adb962e37a83.hot-update.js.map
+//# sourceMappingURL=app.0731b9cb7df1c982e87e.hot-update.js.map

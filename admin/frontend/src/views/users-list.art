@@ -5,6 +5,6 @@
     <td>
         {{$value.group}}
     </td>
-    <td><button class="btn btn-danger">删除</button></td>
+    <td><button class="btn btn-danger ">删除</button></td>
 </tr>
 {{/each}}
