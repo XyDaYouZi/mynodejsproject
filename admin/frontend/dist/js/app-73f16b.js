@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "e5c612e2d47db5e57aef";
+/******/ 	var hotCurrentHash = "73f16b535640c3425816";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -11798,7 +11798,7 @@ module.exports = function ($data) {
         $$out += $escape($value);
         $$out += '</a></li>\r\n    ';
     });
-    $$out += '\r\n    <li><a href="#">&raquo;</a></li>\r\n</ul>';
+    $$out += '\r\n    <li><a href="#">&raquo;</a></li>\r\n</ul>\r\n';
     return $$out;
 };
 
@@ -11839,4 +11839,4 @@ module.exports = __webpack_require__(/*! ./src/app.js */"./src/app.js");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app-e5c612.js.map
+//# sourceMappingURL=app-73f16b.js.map
