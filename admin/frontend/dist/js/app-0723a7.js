@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "2a816251af79f1a8805d";
+/******/ 	var hotCurrentHash = "0723a76946fe0d460260";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -11549,6 +11549,7 @@ const _handleSubmit = (router) => {
         router.go('/index');
     }
 }
+//注册栏
 const _signup = () => {
     //提交表单
     const data = $('#users-form').serialize().toString();
@@ -11585,7 +11586,7 @@ const _signup = () => {
     //调用btn_close按钮上的click事件
     $('#users-close').click();
 }
-
+//渲染页面跳转栏
 const _pagination = (data) => {
     const total = data.length;
     var pageCount = Math.ceil(total / pageSize);
@@ -11628,13 +11629,13 @@ const _setPageActive = (index) => {
         .siblings()
         .removeClass('active');
 }
-
+//渲染用户列表
 const _list = (pageNo) => {
     $('#users-list').html(_views_users_list_art__WEBPACK_IMPORTED_MODULE_3___default()({
         data: dataList.slice((pageNo - 1) * pageSize, pageNo * pageSize)
     }));
 }
-
+//为删除按钮绑定删除事件
 const _remove = () => {
     $('#users-list').on('click', '.remove-user', function () {
         //console.log($(this).attr('data-id'));
@@ -11683,6 +11684,7 @@ const _remove = () => {
 //     })
 // }
 //请求异步处理方式二
+//请求list数据
 const _loadData = () => {
     $.ajax({
         url: '/api/users',
@@ -11913,4 +11915,4 @@ module.exports = __webpack_require__(/*! ./src/app.js */"./src/app.js");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app-2a8162.js.map
+//# sourceMappingURL=app-0723a7.js.map

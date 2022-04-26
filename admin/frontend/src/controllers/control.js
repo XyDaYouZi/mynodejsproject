@@ -21,6 +21,7 @@ const _handleSubmit = (router) => {
         router.go('/index');
     }
 }
+//注册栏
 const _signup = () => {
     //提交表单
     const data = $('#users-form').serialize().toString();
@@ -57,7 +58,7 @@ const _signup = () => {
     //调用btn_close按钮上的click事件
     $('#users-close').click();
 }
-
+//渲染页面跳转栏
 const _pagination = (data) => {
     const total = data.length;
     var pageCount = Math.ceil(total / pageSize);
@@ -100,13 +101,13 @@ const _setPageActive = (index) => {
         .siblings()
         .removeClass('active');
 }
-
+//渲染用户列表
 const _list = (pageNo) => {
     $('#users-list').html(usersListTPL({
         data: dataList.slice((pageNo - 1) * pageSize, pageNo * pageSize)
     }));
 }
-
+//为删除按钮绑定删除事件
 const _remove = () => {
     $('#users-list').on('click', '.remove-user', function () {
         //console.log($(this).attr('data-id'));
@@ -155,6 +156,7 @@ const _remove = () => {
 //     })
 // }
 //请求异步处理方式二
+//请求list数据
 const _loadData = () => {
     $.ajax({
         url: '/api/users',
