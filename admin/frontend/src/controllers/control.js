@@ -3,7 +3,7 @@ import sigininTPL from '../views/signin.art';
 import usersTPL from '../views/user-signup.art';
 import usersListTPL from '../views/users-list.art';
 import warningTPL from '../views/warning.art';
-import successTPL from '../views/success.art';
+//import successTPL from '../views/success.art';
 import usersPageTPL from '../views/users-paginations.art';
 const htmlSignin = sigininTPL();
 const htmlIndex = indexTPL();
@@ -11,6 +11,8 @@ const htmlIndex = indexTPL();
 //--------公共参数------
 const pageSize = 10;
 let dataList = [];
+let currentPage = 1;
+let totalPage = 0;
 
 //---------功能函数板块----------
 const _handleSubmit = (router) => {
@@ -27,7 +29,7 @@ const _signup = () => {
         type: 'post',
         data,
         success: function (res) {
-            if (res.Code == 200) {
+            if (res.Code == 20000) {
                 //添加数据后渲染 方式一
                 /* _loadData().then((res) => {
                      dataList = res;
@@ -38,7 +40,11 @@ const _signup = () => {
                 _loadData();
                 _list(1);
                 _pagination(dataList);
-
+                _setPageActive(1);
+            } else {
+                $('#warning-tip').html(warningTPL({
+                    msg: res.msg
+                }))
             }
         },
         error: function (err) {
@@ -55,6 +61,7 @@ const _signup = () => {
 const _pagination = (data) => {
     const total = data.length;
     var pageCount = Math.ceil(total / pageSize);
+    totalPage = pageCount;
     var pageArray = new Array();
     for (let i = 0; i < pageCount; i++) {
         pageArray[i] = i + 1;
@@ -63,18 +70,35 @@ const _pagination = (data) => {
         pageArray
     });
     $('#users-page').html(htmlPage);
+}
 
-    // 绑定事件
-    $('#users-page-list li:not(:first-child,:last-child)').on('click', function () {
-        $(this).addClass('active').siblings().removeClass('active');
+// 为翻页按钮绑定事件
+const _pageBtns = () => {
+    $('#users-page').on('click', '#users-page-list li:not(:first-child,:last-child)', function () {
         let pageNo = $(this).index();
+        currentPage = pageNo;
+        _setPageActive(pageNo);
         _list(pageNo);
     })
+    $('#users-page').on('click', '#users-page-list li:first-child', function () {
+        currentPage = currentPage == 1 ? 1 : currentPage - 1;
+        _setPageActive(currentPage);
+        _list(currentPage);
+    })
+    $('#users-page').on('click', '#users-page-list li:last-child', function () {
+        currentPage = currentPage == totalPage ? totalPage : currentPage + 1;
+        _setPageActive(currentPage);
+        _list(currentPage);
+    })
+}
 
-    //第一个默认active
-    if (total >= 1) {
-        $('#users-page-list li:nth-child(2)').addClass('active');
-    }
+//翻页按钮高亮显示
+const _setPageActive = (index) => {
+    $('#users-page #users-page-list li')
+        .eq(index)
+        .addClass('active')
+        .siblings()
+        .removeClass('active');
 }
 
 const _list = (pageNo) => {
@@ -87,6 +111,29 @@ const _remove = () => {
     $('#users-list').on('click', '.remove-user', function () {
         //console.log($(this).attr('data-id'));
         let _id = $(this).data('id');
+        $.ajax({
+            url: "/api/users",
+            type: "delete",
+            data: {
+                id: _id
+            },
+            success: () => {
+                _loadData();
+                _pagination(dataList);
+                if (totalPage) {
+                    if (currentPage > totalPage) {
+                        _list(currentPage - 1);
+                        _setPageActive(currentPage - 1);
+                    } else {
+                        _list(currentPage);
+                        _setPageActive(currentPage);
+                    }
+                }
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
     })
 }
 // 注意：jquery 的ajax返回的本身就是一个promise对象
@@ -152,6 +199,8 @@ const index = (router) => {
         _loadData();
         _list(1);
         _pagination(dataList);
+        _pageBtns();
+        _setPageActive(1);
         _remove();
         //点击保存提交表单
         $('#users-save').on('click', _signup);

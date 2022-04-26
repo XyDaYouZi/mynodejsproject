@@ -60,7 +60,7 @@ const removeUser = async (req, res, next) => {
         })
     } else {
         res.render('fail', {
-            msg: JSON.stringify("删除失败")
+            msg: JSON.stringify("用户删除失败")
         });
     }
 }

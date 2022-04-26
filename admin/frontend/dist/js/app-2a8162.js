@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "ace40e717f6c02123be9";
+/******/ 	var hotCurrentHash = "2a816251af79f1a8805d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1044,6 +1044,131 @@ function _setTags (colors) {
 
 ansiHTML.reset()
 
+
+/***/ }),
+
+/***/ "./node_modules/art-template/lib/compile/runtime.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/art-template/lib/compile/runtime.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+/*! art-template@runtime | https://github.com/aui/art-template */
+
+var globalThis = typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : {};
+
+var runtime = Object.create(globalThis);
+var ESCAPE_REG = /["&'<>]/;
+
+/**
+ * 编码模板输出的内容
+ * @param  {any}        content
+ * @return {string}
+ */
+runtime.$escape = function (content) {
+    return xmlEscape(toString(content));
+};
+
+/**
+ * 迭代器，支持数组与对象
+ * @param {array|Object} data
+ * @param {function}     callback
+ */
+runtime.$each = function (data, callback) {
+    if (Array.isArray(data)) {
+        for (var i = 0, len = data.length; i < len; i++) {
+            callback(data[i], i);
+        }
+    } else {
+        for (var _i in data) {
+            callback(data[_i], _i);
+        }
+    }
+};
+
+// 将目标转成字符
+function toString(value) {
+    if (typeof value !== 'string') {
+        if (value === undefined || value === null) {
+            value = '';
+        } else if (typeof value === 'function') {
+            value = toString(value.call(value));
+        } else {
+            value = JSON.stringify(value);
+        }
+    }
+
+    return value;
+}
+
+// 编码 HTML 内容
+function xmlEscape(content) {
+    var html = '' + content;
+    var regexResult = ESCAPE_REG.exec(html);
+    if (!regexResult) {
+        return content;
+    }
+
+    var result = '';
+    var i = void 0,
+        lastIndex = void 0,
+        char = void 0;
+    for (i = regexResult.index, lastIndex = 0; i < html.length; i++) {
+        switch (html.charCodeAt(i)) {
+            case 34:
+                char = '&#34;';
+                break;
+            case 38:
+                char = '&#38;';
+                break;
+            case 39:
+                char = '&#39;';
+                break;
+            case 60:
+                char = '&#60;';
+                break;
+            case 62:
+                char = '&#62;';
+                break;
+            default:
+                continue;
+        }
+
+        if (lastIndex !== i) {
+            result += html.substring(lastIndex, i);
+        }
+
+        lastIndex = i + 1;
+        result += char;
+    }
+
+    if (lastIndex !== i) {
+        return result + html.substring(lastIndex, i);
+    } else {
+        return result;
+    }
+}
+
+module.exports = runtime;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/art-template/lib/runtime.js":
+/*!**************************************************!*\
+  !*** ./node_modules/art-template/lib/runtime.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(/*! ./compile/runtime */ "./node_modules/art-template/lib/compile/runtime.js");
 
 /***/ }),
 
@@ -11383,9 +11508,234 @@ module.exports = content.locals || {};
   !*** ./src/controllers/control.js ***!
   \************************************/
 /*! exports provided: signin, index */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Assigning to rvalue (87:50)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| \n| const _remove = () => {\n>     $('#users-list').on('click', '.remove-user', (this) => {\n|         console.log(this);\n|     })");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "index", function() { return index; });
+/* harmony import */ var _views_index_art__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/index.art */ "./src/views/index.art");
+/* harmony import */ var _views_index_art__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_views_index_art__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _views_signin_art__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/signin.art */ "./src/views/signin.art");
+/* harmony import */ var _views_signin_art__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_views_signin_art__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _views_user_signup_art__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/user-signup.art */ "./src/views/user-signup.art");
+/* harmony import */ var _views_user_signup_art__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_views_user_signup_art__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _views_users_list_art__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/users-list.art */ "./src/views/users-list.art");
+/* harmony import */ var _views_users_list_art__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_views_users_list_art__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _views_warning_art__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/warning.art */ "./src/views/warning.art");
+/* harmony import */ var _views_warning_art__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_views_warning_art__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _views_users_paginations_art__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/users-paginations.art */ "./src/views/users-paginations.art");
+/* harmony import */ var _views_users_paginations_art__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_views_users_paginations_art__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+//import successTPL from '../views/success.art';
+
+const htmlSignin = _views_signin_art__WEBPACK_IMPORTED_MODULE_1___default()();
+const htmlIndex = _views_index_art__WEBPACK_IMPORTED_MODULE_0___default()();
+
+//--------公共参数------
+const pageSize = 10;
+let dataList = [];
+let currentPage = 1;
+let totalPage = 0;
+
+//---------功能函数板块----------
+const _handleSubmit = (router) => {
+    return (e) => {
+        e.preventDefault();
+        router.go('/index');
+    }
+}
+const _signup = () => {
+    //提交表单
+    const data = $('#users-form').serialize().toString();
+    $.ajax({
+        url: '/api/users',
+        type: 'post',
+        data,
+        success: function (res) {
+            if (res.Code == 20000) {
+                //添加数据后渲染 方式一
+                /* _loadData().then((res) => {
+                     dataList = res;
+                     // _list(1);
+                     // _pagination(res);
+                 });*/
+                // 方式二
+                _loadData();
+                _list(1);
+                _pagination(dataList);
+                _setPageActive(1);
+            } else {
+                $('#warning-tip').html(_views_warning_art__WEBPACK_IMPORTED_MODULE_4___default()({
+                    msg: res.msg
+                }))
+            }
+        },
+        error: function (err) {
+            $('#warning-tip').html(_views_warning_art__WEBPACK_IMPORTED_MODULE_4___default()({
+                msg: "用户注册失败！"
+            }))
+            console.log(err);
+        }
+    })
+    //调用btn_close按钮上的click事件
+    $('#users-close').click();
+}
+
+const _pagination = (data) => {
+    const total = data.length;
+    var pageCount = Math.ceil(total / pageSize);
+    totalPage = pageCount;
+    var pageArray = new Array();
+    for (let i = 0; i < pageCount; i++) {
+        pageArray[i] = i + 1;
+    }
+    const htmlPage = _views_users_paginations_art__WEBPACK_IMPORTED_MODULE_5___default()({
+        pageArray
+    });
+    $('#users-page').html(htmlPage);
+}
+
+// 为翻页按钮绑定事件
+const _pageBtns = () => {
+    $('#users-page').on('click', '#users-page-list li:not(:first-child,:last-child)', function () {
+        let pageNo = $(this).index();
+        currentPage = pageNo;
+        _setPageActive(pageNo);
+        _list(pageNo);
+    })
+    $('#users-page').on('click', '#users-page-list li:first-child', function () {
+        currentPage = currentPage == 1 ? 1 : currentPage - 1;
+        _setPageActive(currentPage);
+        _list(currentPage);
+    })
+    $('#users-page').on('click', '#users-page-list li:last-child', function () {
+        currentPage = currentPage == totalPage ? totalPage : currentPage + 1;
+        _setPageActive(currentPage);
+        _list(currentPage);
+    })
+}
+
+//翻页按钮高亮显示
+const _setPageActive = (index) => {
+    $('#users-page #users-page-list li')
+        .eq(index)
+        .addClass('active')
+        .siblings()
+        .removeClass('active');
+}
+
+const _list = (pageNo) => {
+    $('#users-list').html(_views_users_list_art__WEBPACK_IMPORTED_MODULE_3___default()({
+        data: dataList.slice((pageNo - 1) * pageSize, pageNo * pageSize)
+    }));
+}
+
+const _remove = () => {
+    $('#users-list').on('click', '.remove-user', function () {
+        //console.log($(this).attr('data-id'));
+        let _id = $(this).data('id');
+        $.ajax({
+            url: "/api/users",
+            type: "delete",
+            data: {
+                id: _id
+            },
+            success: () => {
+                _loadData();
+                _pagination(dataList);
+                if (totalPage) {
+                    if (currentPage > totalPage) {
+                        _list(currentPage - 1);
+                        _setPageActive(currentPage - 1);
+                    } else {
+                        _list(currentPage);
+                        _setPageActive(currentPage);
+                    }
+                }
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+    })
+}
+// 注意：jquery 的ajax返回的本身就是一个promise对象
+//请求异步处理方式一：
+// const _loadData = () => {
+//     return new Promise((resolve, reject) => {
+//         $.ajax({
+//             url: '/api/users/list',
+//             type: 'get',
+//             success: (res) => {
+//                 let data = res.data;
+//                 resolve(data);
+//             },
+//             error: (err) => {
+//                 console.log(err);
+//                 reject(err);
+//             }
+//         })
+//     })
+// }
+//请求异步处理方式二
+const _loadData = () => {
+    $.ajax({
+        url: '/api/users',
+        type: 'get',
+        async: false, //异步变同步
+        success: (res) => {
+            let data = res.data;
+            dataList = data;
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    })
+}
+// -------router板块------
+//登录页
+const signin = (router) => {
+    return (req, res, next) => {
+        res.render(htmlSignin);
+        $('#signin').on('submit', _handleSubmit(router));
+    }
+}
+//注册页
+const signup = () => {
+
+}
+//index页
+const index = (router) => {
+    return (req, res, next) => {
+        res.render(htmlIndex);
+        //window resize,让页面撑满整个页面
+        $(window, '.wrapper').resize();
+        //填充用户列表
+        $('#content').html(_views_user_signup_art__WEBPACK_IMPORTED_MODULE_2___default()());
+        // 渲染list方式一
+        /*_loadData().then((res) => {
+            dataList = res;
+            _list(1);
+            _pagination(res);
+        });*/
+        //方式二
+        _loadData();
+        _list(1);
+        _pagination(dataList);
+        _pageBtns();
+        _setPageActive(1);
+        _remove();
+        //点击保存提交表单
+        $('#users-save').on('click', _signup);
+    }
+}
+
+
 
 /***/ }),
 
@@ -11414,6 +11764,140 @@ router.route('/index', Object(_controllers_control_js__WEBPACK_IMPORTED_MODULE_1
 
 /***/ }),
 
+/***/ "./src/views/index.art":
+/*!*****************************!*\
+  !*** ./src/views/index.art ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $imports = __webpack_require__(/*! ../../node_modules/art-template/lib/runtime.js */ "./node_modules/art-template/lib/runtime.js");
+module.exports = function ($data) {
+    'use strict';
+    $data = $data || {};
+    var $$out = '';
+    $$out += '<div class="wrapper">\r\n  <!-- Main Header -->\r\n  <header class="main-header">\r\n    <!-- Logo -->\r\n    <a href="index2.html" class="logo">\r\n      <!-- mini logo for sidebar mini 50x50 pixels -->\r\n      <span class="logo-mini"><b>喵</b>星人</span>\r\n      <!-- logo for regular state and mobile devices -->\r\n      <span class="logo-lg"><b>喵星人</b>的管理系统</span>\r\n    </a>\r\n\r\n    <!-- Header Navbar -->\r\n    <nav class="navbar navbar-static-top" role="navigation">\r\n      <!-- Sidebar toggle button-->\r\n      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">\r\n        <span class="sr-only">切换导航</span>\r\n      </a>\r\n      <!-- Navbar Right Menu -->\r\n      <div class="navbar-custom-menu">\r\n        <ul class="nav navbar-nav">\r\n          <!-- Messages: style can be found in dropdown.less-->\r\n          <li class="dropdown messages-menu">\r\n            <!-- Menu toggle button -->\r\n            <a href="#" class="dropdown-toggle" data-toggle="dropdown">\r\n              <i class="fa fa-envelope-o"></i>\r\n              <span class="label label-success">4</span>\r\n            </a>\r\n            <ul class="dropdown-menu">\r\n              <li class="header">You have 4 messages</li>\r\n              <li>\r\n                <!-- inner menu: contains the messages -->\r\n                <ul class="menu">\r\n                  <li>\r\n                    <!-- start message -->\r\n                    <a href="#">\r\n                      <div class="pull-left">\r\n                        <!-- User Image -->\r\n                        <img ';
+    $$out += 'src="http://adminlte.la998.com/v2/dist/img/user2-160x160.jpg"';
+    $$out += ' class="img-circle"\r\n                          alt="User Image">\r\n                      </div>\r\n                      <!-- Message title and timestamp -->\r\n                      <h4>\r\n                        Support Team\r\n                        <small><i class="fa fa-clock-o"></i> 5 mins</small>\r\n                      </h4>\r\n                      <!-- The message -->\r\n                      <p>Why not buy a new awesome theme?</p>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end message -->\r\n                </ul>\r\n                <!-- /.menu -->\r\n              </li>\r\n              <li class="footer"><a href="#">查看所有消息</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- /.messages-menu -->\r\n\r\n          <!-- Notifications Menu -->\r\n          <li class="dropdown notifications-menu">\r\n            <!-- Menu toggle button -->\r\n            <a href="#" class="dropdown-toggle" data-toggle="dropdown">\r\n              <i class="fa fa-bell-o"></i>\r\n              <span class="label label-warning">10</span>\r\n            </a>\r\n            <ul class="dropdown-menu">\r\n              <li class="header">You have 10 notifications</li>\r\n              <li>\r\n                <!-- Inner Menu: contains the notifications -->\r\n                <ul class="menu">\r\n                  <li>\r\n                    <!-- start notification -->\r\n                    <a href="#">\r\n                      <i class="fa fa-users text-aqua"></i> 5 new members joined today\r\n                    </a>\r\n                  </li>\r\n                  <!-- end notification -->\r\n                </ul>\r\n              </li>\r\n              <li class="footer"><a href="#">全部</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- Tasks Menu -->\r\n          <li class="dropdown tasks-menu">\r\n            <!-- Menu Toggle Button -->\r\n            <a href="#" class="dropdown-toggle" data-toggle="dropdown">\r\n              <i class="fa fa-flag-o"></i>\r\n              <span class="label label-danger">9</span>\r\n            </a>\r\n            <ul class="dropdown-menu">\r\n              <li class="header">You have 9 tasks</li>\r\n              <li>\r\n                <!-- Inner menu: contains the tasks -->\r\n                <ul class="menu">\r\n                  <li>\r\n                    <!-- Task item -->\r\n                    <a href="#">\r\n                      <!-- Task title and progress text -->\r\n                      <h3>\r\n                        设计按钮\r\n                        <small class="pull-right">20%</small>\r\n                      </h3>\r\n                      <!-- The progress bar -->\r\n                      <div class="progress xs">\r\n                        <!-- Change the css width attribute to simulate progress -->\r\n                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"\r\n                          aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">\r\n                          <span class="sr-only">20% Complete</span>\r\n                        </div>\r\n                      </div>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end task item -->\r\n                </ul>\r\n              </li>\r\n              <li class="footer">\r\n                查看所有任务\r\n              </li>\r\n            </ul>\r\n          </li>\r\n          <!-- User Account Menu -->\r\n          <li class="dropdown user user-menu">\r\n            <!-- Menu Toggle Button -->\r\n            <a href="#" class="dropdown-toggle" data-toggle="dropdown">\r\n              <!-- The user image in the navbar-->\r\n              <img ';
+    $$out += 'src="http://adminlte.la998.com/v2/dist/img/user2-160x160.jpg"';
+    $$out += ' class="user-image" alt="User Image">\r\n              <!-- hidden-xs hides the username on small devices so only the image appears. -->\r\n              <span class="hidden-xs">大柚子</span>\r\n            </a>\r\n            <ul class="dropdown-menu">\r\n              <!-- The user image in the menu -->\r\n              <li class="user-header">\r\n                <img ';
+    $$out += 'src="http://adminlte.la998.com/v2/dist/img/user2-160x160.jpg"';
+    $$out += ' class="img-circle" alt="User Image">\r\n                <p>\r\n                  大柚子 - Web Developer\r\n                  <small>Member since Nov. 2012</small>\r\n                </p>\r\n              </li>\r\n              <!-- Menu Body -->\r\n              <li class="user-body">\r\n                <div class="row">\r\n                  <div class="col-xs-4 text-center">\r\n                    <a href="#">花朵</a>\r\n                  </div>\r\n                  <div class="col-xs-4 text-center">\r\n                    <a href="#">销量</a>\r\n                  </div>\r\n                  <div class="col-xs-4 text-center">\r\n                    <a href="#">好友</a>\r\n                  </div>\r\n                </div>\r\n                <!-- /.row -->\r\n              </li>\r\n              <!-- Menu Footer-->\r\n              <li class="user-footer">\r\n                <div class="pull-left">\r\n                  <a href="#" class="btn btn-default btn-flat">设置</a>\r\n                </div>\r\n                <div class="pull-right">\r\n                  <a href="#" class="btn btn-default btn-flat">退出</a>\r\n                </div>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n          <!-- Control Sidebar Toggle Button -->\r\n          <li>\r\n            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </nav>\r\n  </header>\r\n  <!-- Left side column. contains the logo and sidebar -->\r\n  <aside class="main-sidebar">\r\n\r\n    <!-- sidebar: style can be found in sidebar.less -->\r\n    <section class="sidebar">\r\n\r\n      <!-- Sidebar user panel (optional) -->\r\n      <div class="user-panel">\r\n        <div class="pull-left image">\r\n          <img ';
+    $$out += 'src="http://adminlte.la998.com/v2/dist/img/user2-160x160.jpg"';
+    $$out += ' class="img-circle" alt="User Image">\r\n        </div>\r\n        <div class="pull-left info">\r\n          <p>大柚子</p>\r\n          <!-- Status -->\r\n          <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- search form (Optional) -->\r\n      <form action="#" method="get" class="sidebar-form">\r\n        <div class="input-group">\r\n          <input type="text" name="q" class="form-control" placeholder="搜索...">\r\n          <span class="input-group-btn">\r\n            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>\r\n            </button>\r\n          </span>\r\n        </div>\r\n      </form>\r\n      <!-- /.search form -->\r\n\r\n      <!-- Sidebar Menu -->\r\n      <ul class="sidebar-menu">\r\n        <li class="header">菜单</li>\r\n        <!-- Optionally, you can add icons to the links -->\r\n        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>用户管理</span></a></li>\r\n        <li><a href="#"><i class="fa fa-link"></i> <span>职位管理</span></a></li>\r\n        <li class="treeview">\r\n          <a href="#"><i class="fa fa-link"></i> <span>多级菜单</span>\r\n            <span class="pull-right-container">\r\n              <i class="fa fa-angle-left pull-right"></i>\r\n            </span>\r\n          </a>\r\n          <ul class="treeview-menu">\r\n            <li><a href="#">Link in level 2</a></li>\r\n            <li><a href="#">Link in level 2</a></li>\r\n          </ul>\r\n        </li>\r\n      </ul>\r\n      <!-- /.sidebar-menu -->\r\n    </section>\r\n    <!-- /.sidebar -->\r\n  </aside>\r\n\r\n  <!-- Content Wrapper. Contains page content -->\r\n  <div class="content-wrapper">\r\n    <!-- Content Header (Page header) -->\r\n    <section class="content-header">\r\n      <h1>\r\n        用户管理\r\n        <small>用户列表</small>\r\n      </h1>\r\n      <ol class="breadcrumb">\r\n        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>\r\n        <li class="active">用户管理</li>\r\n      </ol>\r\n    </section>\r\n\r\n    <!-- Main content -->\r\n    <!-- 主要内容插入板块 -->\r\n    <section class="content" id="content">\r\n      <!-- Your Page Content Here -->\r\n\r\n    </section>\r\n    <!-- /.content -->\r\n  </div>\r\n  <!-- /.content-wrapper -->\r\n\r\n  <!-- Main Footer -->\r\n  <footer class="main-footer">\r\n    <!-- To the right -->\r\n    <div class="pull-right hidden-xs">\r\n      Anything you want\r\n    </div>\r\n    <!-- Default to the left -->\r\n    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.\r\n  </footer>\r\n\r\n  <!-- Control Sidebar -->\r\n  <aside class="control-sidebar control-sidebar-dark">\r\n    <!-- Create the tabs -->\r\n    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">\r\n      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>\r\n      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>\r\n    </ul>\r\n    <!-- Tab panes -->\r\n    <div class="tab-content">\r\n      <!-- Home tab content -->\r\n      <div class="tab-pane active" id="control-sidebar-home-tab">\r\n        <h3 class="control-sidebar-heading">近期活动</h3>\r\n        <ul class="control-sidebar-menu">\r\n          <li>\r\n            <a href="javascript::;">\r\n              <i class="menu-icon fa fa-birthday-cake bg-red"></i>\r\n\r\n              <div class="menu-info">\r\n                <h4 class="control-sidebar-subheading">Langdon 的生日</h4>\r\n\r\n                <p>Will be 23 on April 24th</p>\r\n              </div>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n        <!-- /.control-sidebar-menu -->\r\n\r\n        <h3 class="control-sidebar-heading"> 任务进度</h3>\r\n        <ul class="control-sidebar-menu">\r\n          <li>\r\n            <a href="javascript::;">\r\n              <h4 class="control-sidebar-subheading">\r\n                自定义模板设计\r\n                <span class="pull-right-container">\r\n                  <span class="label label-danger pull-right">70%</span>\r\n                </span>\r\n              </h4>\r\n\r\n              <div class="progress progress-xxs">\r\n                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>\r\n              </div>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n        <!-- /.control-sidebar-menu -->\r\n\r\n      </div>\r\n      <!-- /.tab-pane -->\r\n      <!--  统计信息选项卡内容 -->\r\n      <div class="tab-pane" id="control-sidebar-stats-tab"> 统计信息选项卡内容</div>\r\n      <!-- /.tab-pane -->\r\n      <!-- Settings tab content -->\r\n      <div class="tab-pane" id="control-sidebar-settings-tab">\r\n        <form method="post">\r\n          <h3 class="control-sidebar-heading">常规设置项</h3>\r\n\r\n          <div class="form-group">\r\n            <label class="control-sidebar-subheading">\r\n              报告面板用法\r\n              <input type="checkbox" class="pull-right" checked>\r\n            </label>\r\n\r\n            <p>\r\n              常规设置选项的相关信息\r\n            </p>\r\n          </div>\r\n          <!-- /.form-group -->\r\n        </form>\r\n      </div>\r\n      <!-- /.tab-pane -->\r\n    </div>\r\n  </aside>\r\n  <!-- /.control-sidebar -->\r\n  <!-- Add the sidebar\'s background. This div must be placed\r\n         immediately after the control sidebar -->\r\n  <div class="control-sidebar-bg"></div>\r\n</div>';
+    return $$out;
+};
+
+/***/ }),
+
+/***/ "./src/views/signin.art":
+/*!******************************!*\
+  !*** ./src/views/signin.art ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $imports = __webpack_require__(/*! ../../node_modules/art-template/lib/runtime.js */ "./node_modules/art-template/lib/runtime.js");
+module.exports = function ($data) {
+    'use strict';
+    $data = $data || {};
+    var $$out = '';
+    $$out += '<div class="login-box">\r\n  <div class="login-logo">\r\n    <a href="../../index2.html"><b>MyAdmin</b>LTE</a>\r\n  </div>\r\n  <!-- /.login-logo -->\r\n  <div class="login-box-body">\r\n    <p class="login-box-msg">欢 迎 来 到 本 系 统</p>\r\n    <form id="signin">\r\n      <div class="form-group has-feedback">\r\n        <input type="text" class="form-control" placeholder="用户名">\r\n        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>\r\n      </div>\r\n      <div class="form-group has-feedback">\r\n        <input type="password" class="form-control" placeholder="密码">\r\n        <span class="glyphicon glyphicon-lock form-control-feedback"></span>\r\n      </div>\r\n      <div class="row">\r\n        <!-- <div class="col-xs-8">\r\n          <div class="checkbox icheck">\r\n            <label>\r\n              <input type="checkbox"> Remember Me\r\n            </label>\r\n          </div>\r\n        </div> -->\r\n        <!-- /.col -->\r\n        <div class="col-xs-12">\r\n          <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>\r\n        </div>\r\n        <!-- /.col -->\r\n      </div>\r\n    </form>\r\n    <!-- <div class="social-auth-links text-center">\r\n      <p>- OR -</p>\r\n      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using\r\n        Facebook</a>\r\n      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using\r\n        Google+</a>\r\n    </div> -->\r\n    <!-- /.social-auth-links -->\r\n    <!-- <a href="#">I forgot my password</a><br>\r\n    <a href="register.html" class="text-center">Register a new membership</a> -->\r\n  </div>\r\n  <!-- /.login-box-body -->\r\n</div>';
+    return $$out;
+};
+
+/***/ }),
+
+/***/ "./src/views/user-signup.art":
+/*!***********************************!*\
+  !*** ./src/views/user-signup.art ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $imports = __webpack_require__(/*! ../../node_modules/art-template/lib/runtime.js */ "./node_modules/art-template/lib/runtime.js");
+module.exports = function ($data) {
+    'use strict';
+    $data = $data || {};
+    var $$out = '';
+    $$out += '<div class="box">\r\n    <!-- /.box-header -->\r\n    <!-- button -->\r\n    <!-- warning -->\r\n    <div id="warning-tip">\r\n    </div>\r\n    <div class="box-header">\r\n        <button type="button" class="btn  btn-success btn-lg" data-toggle="modal" data-target="#myModal">添加</button>\r\n    </div>\r\n    <!-- Modal -->\r\n    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">\r\n        <div class="modal-dialog" role="document" style="margin-top:150px">\r\n            <div class="modal-content">\r\n                <div class="modal-header">\r\n                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span\r\n                            aria-hidden="true">&times;</span></button>\r\n                    <h4 class="modal-title" id="myModalLabel">添加用户</h4>\r\n                </div>\r\n                <div class="modal-body">\r\n                    <form role="form" id="users-form">\r\n                        <div class="box-body">\r\n                            <div class="form-group">\r\n                                <label for="username">用户名</label>\r\n                                <input type="text" name="username" class="form-control" id="username"\r\n                                    placeholder="请输入用户名">\r\n                            </div>\r\n                            <div class="form-group">\r\n                                <label for="password">密码</label>\r\n                                <input type="password" name="password" class="form-control" id="password"\r\n                                    placeholder="请输入密码">\r\n                            </div>\r\n                            <div class="form-group">\r\n                                <label for="group">所在组</label>\r\n                                <input type="text" name="group" class="form-control" id="group" placeholder="请输入所在组">\r\n                            </div>\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n                <div class="modal-footer">\r\n                    <button type="button" class="btn btn-default" data-dismiss="modal" id="users-close">关闭</button>\r\n                    <button type="button" class="btn btn-primary" id="users-save">保存</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <!-- table -->\r\n    <div class="box-body">\r\n        <table class="table table-bordered">\r\n            <tr>\r\n                <th style="width: 100px">序号</th>\r\n                <th>用户名</th>\r\n                <th>所在组</th>\r\n                <th style="width: 100px">操作</th>\r\n            </tr>\r\n            <tbody id="users-list">\r\n                <!-- 用户信息展示列表 -->\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n    <!-- /.box-body -->\r\n    <div class="box-footer clearfix" id="users-page">\r\n       <!-- paginations -->\r\n    </div>\r\n</div>';
+    return $$out;
+};
+
+/***/ }),
+
+/***/ "./src/views/users-list.art":
+/*!**********************************!*\
+  !*** ./src/views/users-list.art ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $imports = __webpack_require__(/*! ../../node_modules/art-template/lib/runtime.js */ "./node_modules/art-template/lib/runtime.js");
+module.exports = function ($data) {
+    'use strict';
+    $data = $data || {};
+    var $$out = '', $each = $imports.$each, data = $data.data, $value = $data.$value, $index = $data.$index, $escape = $imports.$escape;
+    $each(data, function ($value, $index) {
+        $$out += '\r\n<tr>\r\n    <td>';
+        $$out += $escape($index + 1);
+        $$out += '</td>\r\n    <td>';
+        $$out += $escape($value.username);
+        $$out += '</td>\r\n    <td>\r\n        ';
+        $$out += $escape($value.group);
+        $$out += '\r\n    </td>\r\n    <td><button class="btn btn-danger remove-user" data-id="';
+        $$out += $escape($value._id);
+        $$out += '">删除</button></td>\r\n</tr>\r\n';
+    });
+    return $$out;
+};
+
+/***/ }),
+
+/***/ "./src/views/users-paginations.art":
+/*!*****************************************!*\
+  !*** ./src/views/users-paginations.art ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $imports = __webpack_require__(/*! ../../node_modules/art-template/lib/runtime.js */ "./node_modules/art-template/lib/runtime.js");
+module.exports = function ($data) {
+    'use strict';
+    $data = $data || {};
+    var $$out = '', $each = $imports.$each, pageArray = $data.pageArray, $value = $data.$value, $index = $data.$index, $escape = $imports.$escape;
+    $$out += '<ul class="pagination pagination-sm no-margin pull-right" id="users-page-list">\r\n    <li><a href="#">&laquo;</a></li>\r\n    ';
+    $each(pageArray, function ($value, $index) {
+        $$out += '\r\n    <li><a href="#">';
+        $$out += $escape($value);
+        $$out += '</a></li>\r\n    ';
+    });
+    $$out += '\r\n    <li><a href="#">&raquo;</a></li>\r\n</ul>\r\n';
+    return $$out;
+};
+
+/***/ }),
+
+/***/ "./src/views/warning.art":
+/*!*******************************!*\
+  !*** ./src/views/warning.art ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $imports = __webpack_require__(/*! ../../node_modules/art-template/lib/runtime.js */ "./node_modules/art-template/lib/runtime.js");
+module.exports = function ($data) {
+    'use strict';
+    $data = $data || {};
+    var $$out = '', $escape = $imports.$escape, msg = $data.msg;
+    $$out += '<div class="alert alert-warning alert-dismissible" role="alert">\r\n    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span\r\n            aria-hidden="true">&times;</span></button>\r\n    <strong>错误!</strong> ';
+    $$out += $escape(msg);
+    $$out += '.\r\n</div>';
+    return $$out;
+};
+
+/***/ }),
+
 /***/ 0:
 /*!********************************************************************************************************!*\
   !*** multi (webpack)-dev-server/client?http://localhost:8080 (webpack)/hot/dev-server.js ./src/app.js ***!
@@ -11429,4 +11913,4 @@ module.exports = __webpack_require__(/*! ./src/app.js */"./src/app.js");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app-ace40e.js.map
+//# sourceMappingURL=app-2a8162.js.map
